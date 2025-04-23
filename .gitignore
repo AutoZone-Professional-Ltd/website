@@ -1,0 +1,134 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.p~ 
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.mo
+*.db
+*.sqlite3
+*.sqlite3-journal
+*.pyproj
+*.sublime-project
+*.sublime-workspace
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static_root/
+static/
+public/static/
+.env
+.env.*
+*.env
+.envrc
+.env.bak
+.env.backup
+secrets.json
+
+# Django migrations (optional, only if you want to ignore generated migration files)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+*.iml
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Virtualenv
+venv/
+ENV/
+env/
+.venv/
+.ENV/
+ENV.bak/
+env.bak/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Test files
+tests/__pycache__/
+
+# Backup files
+*.bak
+*.swp
+*.swo
+*.orig
+
+# Logs
+logs/
+*.log
+logfile.log
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Gunicorn
+gunicorn.pid
+
+# Sentry
+.sentryclirc
+
+# Heroku
+*.sqlite3
+*.pyc
+Procfile
+
+# Docker
+*.pid
+docker-compose.override.yml
+.docker/
+.dockerignore
+
+# Node (if using npm for frontend)
+node_modules/
+npm-debug.log
+yarn-error.log
