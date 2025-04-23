@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% include 'head.html' %}
+    {% load static %}
+    {% include 'includes/head.html' %}
 </head>
 <body>
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -10,13 +11,13 @@
         </div>
     </div>
 
-    {% include 'topbar.html' %}
-    {% include 'navbar.html' %}
+    {% include 'includes/topbar.html' %}
+    {% include 'includes/navbar.html' %}
 
     {% block content %}
     {% endblock %}
 
-    {% include 'footer.html' %}
+    {% include 'includes/footer.html' %}
 
     <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 
