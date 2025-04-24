@@ -14,8 +14,8 @@
                     <div class="carousel-caption">
                         <div class="text-center p-4" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase fw-bold mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.1s">AUTO PARTS & ACCESSORIES</h4>
-                            <h1 class="display-1 text-capitalize text-white mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.3s">Quality Automotive Solutions</h1>
-                            <p class="text-white mb-4 mb-md-5 fs-5 wow fadeInUp" data-wow-delay="0.5s">Your trusted source for professional automotive parts and services. We provide high-quality solutions for all your vehicle needs.</p>
+                            <h1 class="display-1 text-capitalize text-white mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.3s">Quality Automobile Solutions</h1>
+                            <p class="text-white mb-4 mb-md-5 fs-5 wow fadeInUp" data-wow-delay="0.5s">Your trusted source for professional automobile parts and services. We provide high-quality solutions for all your vehicle needs.</p>
                             <a class="btn btn-primary border-secondary rounded-pill text-white py-3 px-5 wow fadeInUp" data-wow-delay="0.7s" href="#">Order Now</a>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                     <div class="carousel-caption">
                         <div class="text-center p-4" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase fw-bold mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.1s">PROFESSIONAL SERVICES</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.3s">Expert Automotive Care</h1>
+                            <h1 class="display-1 text-capitalize text-white mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.3s">Expert In Automobile Care</h1>
                             <p class="text-white mb-4 mb-md-5 fs-5 wow fadeInUp" data-wow-delay="0.5s">
                                 Our team of certified professionals is ready to provide top-notch 
                                 service for your Motor Cycle maintenance and repair needs.</p>
@@ -45,63 +45,98 @@
         </div>
     </div>
 
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-3 py-md-4 py-lg-5">
         <div class="container py-5">
-            <div class="row g-5">
+            <div class="row g-5 align-items-stretch">
+                <!-- Left Image Column -->
                 <div class="col-xl-5 wow fadeInLeft" data-wow-delay="0.1s">
-                    <div class="bg-light rounded">
-                        <img src="{% static 'img/about-3.jpg' %}" class="img-fluid w-100" alt="Image">
+                    <div class="bg-light rounded h-100">
+                        <img src="{% static 'img/about-3.jpg' %}" class="img-fluid w-100 h-100 object-fit-cover" alt="Image" style="object-fit: cover;">
                     </div>
                 </div>
+    
+                <!-- Right Text Content Column -->
                 <div class="col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
-                    <h5 class="sub-title pe-3">About our company</h5>
-                    <h1 class="display-5 mb-4">Trusted Automotive Solutions Provider</h1>
-                    <p class="mb-4">
-                        AUTOZONE PROFESSIONAL LIMITED has been serving 
-                        customers with high-quality automotive
-                         parts and professional services for over 20 years. 
-                         Our commitment to excellence and customer satisfaction sets us 
-                         apart in the industry.</p>
-                    <div class="row gy-4 align-items-center">
-                        <div class="col-12 col-sm-6 d-flex align-items-center">
-                            <i class="fas fa-tools fa-3x text-secondary"></i>
-                            <h5 class="ms-4">Quality Parts</h5>
-                        </div>
-                        <div class="col-12 col-sm-6 d-flex align-items-center">
-                            <i class="fas fa-user-tie fa-3x text-secondary"></i>
-                            <h5 class="ms-4">Professional Service</h5>
-                        </div>
-                        <div class="col-4 col-md-3">
-                            <div class="bg-light text-center rounded p-3">
-                                <div class="mb-2">
-                                    <i class="fas fa-calendar-alt fa-4x text-primary"></i>
+                    <div class="h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="sub-title pe-3">About our company</h5>
+                            <h1 class="display-5 mb-4">Trusted Automobile Solutions Provider</h1>
+                            <p class="mb-4">
+                                AUTOZONE PROFESSIONAL LIMITED has been serving customers with high-quality Automobile
+                                parts and professional services for over 20 years. Our commitment to excellence and
+                                customer satisfaction sets us apart in the industry.
+                            </p>
+                            <div class="row gy-4">
+                                <div class="col-sm-6 d-flex align-items-center">
+                                    <i class="fas fa-tools fa-3x text-secondary"></i>
+                                    <h5 class="ms-4 mb-0">Quality Parts</h5>
                                 </div>
-                                <h1 class="display-5 fw-bold mb-2">20+</h1>
-                                <p class="text-muted mb-0">Years Experience</p>
-                            </div>
-                        </div>
-                        <div class="col-8 col-md-9">
-                            <div class="mb-5">
-                                <p class="text-primary h6 mb-3"><i class="fa fa-check-circle text-secondary me-2"></i> 100% Genuine Parts</p>
-                                <p class="text-primary h6 mb-3"><i class="fa fa-check-circle text-secondary me-2"></i> Fast & Reliable Service</p>
-                                <p class="text-primary h6 mb-3"><i class="fa fa-check-circle text-secondary me-2"></i> Expert Advice</p>
-                            </div>
-                            <div class="d-flex flex-wrap">
-                                <div id="phone-tada" class="d-flex align-items-center justify-content-center me-4">
-                                    <a href="" class="position-relative wow tada" data-wow-delay=".9s">
-                                        <i class="fa fa-phone-alt text-primary fa-3x"></i>
-                                        <div class="position-absolute" style="top: 0; left: 25px;">
-                                            <span><i class="fa fa-comment-dots text-secondary"></i></span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center">
-                                    <span class="text-primary">Need assistance?</span>
-                                    <span class="text-secondary fw-bold fs-5" style="letter-spacing: 2px;">Call: +123 456 7890</span>
+                                <div class="col-sm-6 d-flex align-items-center">
+                                    <i class="fas fa-user-tie fa-3x text-secondary"></i>
+                                    <h5 class="ms-4 mb-0">How We Work With You</h5>
                                 </div>
                             </div>
                         </div>
-                    </div>
+    
+                        <!-- Bottom two sub-columns -->
+                        <div class="row mt-4">
+                            <!-- Left sub-column -->
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <p class="text-primary h6 mb-2"><i class="fa fa-check-circle text-secondary me-2"></i> 100% Genuine Parts</p>
+                                    <p class="text-primary h6 mb-2"><i class="fa fa-check-circle text-secondary me-2"></i> Fast & Reliable Service</p>
+                                    <p class="text-primary h6 mb-3"><i class="fa fa-check-circle text-secondary me-2"></i> Expert Advice</p>
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div id="phone-tada" class="me-4">
+                                        <a href="#" class="position-relative wow tada" data-wow-delay=".9s">
+                                            <i class="fa fa-phone-alt text-primary fa-3x"></i>
+                                            <div class="position-absolute" style="top: 0; left: 25px;">
+                                                <i class="fa fa-comment-dots text-secondary"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <span class="text-primary">Need assistance?</span><br>
+                                        <span class="text-secondary fs-5" style="letter-spacing: 1px;">Call: <i>+256 755 829 642</i></span>
+                                        <br>
+                                        <span class="text-secondary fs-5" style="letter-spacing: 1px;">Mail:<i> sales@autozonepro.org</i></span>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!-- Right sub-column -->
+                            <div class="col-md-6">
+                                <div class="bg-light rounded p-4 h-100 shadow-sm">
+                                    <!--<h5 class="text-primary mb-4 fw-bold"><i class="fas fa-handshake me-2"></i/h5>-->
+                                    <ul class="list-unstyled text-muted">
+                                        <li class="mb-3 d-flex align-items-start">
+                                            <i class="fas fa-lightbulb me-3 text-primary fa-lg"></i>
+                                            <span class="fw-semibold text-dark">Help in <span class="text-secondary">Making Estimate</span></span>
+                                        </li>
+                                        <li class="mb-3 d-flex align-items-start">
+                                            <i class="fas fa-pen-fancy me-3 text-primary fa-lg"></i>
+                                            <span class="fw-semibold text-dark">Editing <span class="text-secondary">Your Estimate</span></span>
+                                        </li>
+                                        <li class="mb-3 d-flex align-items-start">
+                                            <i class="fas fa-check-circle me-3 text-primary fa-lg"></i>
+                                            <span class="fw-semibold text-dark">Verifying <span class="text-secondary">Your Estimate</span></span>
+                                        </li>
+                                        <li class="mb-3 d-flex align-items-start">
+                                            <i class="fas fa-file-invoice-dollar me-3 text-primary fa-lg"></i>
+                                            <span class="fw-semibold text-dark">Billing <span class="text-secondary">Your Estimate</span></span>
+                                        </li>
+                                        <li class="mb-3 d-flex align-items-start">
+                                            <i class="fas fa-truck-moving me-3 text-primary fa-lg"></i>
+                                            <span class="fw-semibold text-dark">Delivery <span class="text-secondary">to Your Doorstep</span></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+    
+                    </div> <!-- End h-100 container -->
                 </div>
             </div>
         </div>
@@ -231,16 +266,16 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.5s">
+                 <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item">
                         <div class="service-inner">
                             <div class="service-img">
-                                <img src="{% static 'img/about-3.jpg' %}" class="img-fluid w-100 rounded" alt="Image">
+                                <img src="{% static 'img/service-1.jpg' %}" class="img-fluid w-100 rounded" alt="Image">
                             </div>
                             <div class="service-title">
                                 <div class="service-title-name">
                                     <div class="bg-primary text-center rounded p-3 mx-5 mb-4">
-                                        <a href="#" class="h4 text-white mb-0">Maintenance</a>
+                                        <a href="#" class="h4 text-white mb-0">Endurance</a>
                                     </div>
                                     <a class="btn bg-light text-secondary rounded-pill py-3 px-5 mb-4" href="#">Explore More</a>
                                 </div>
@@ -254,7 +289,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div> 
             </div>
         </div>
     </div>
