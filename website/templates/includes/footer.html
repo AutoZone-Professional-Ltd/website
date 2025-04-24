@@ -1,76 +1,92 @@
 {% load static %}
-<div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-md-6 col-lg-6 col-xl-3">
-                <div class="footer-item d-flex flex-column">
-                    <h4 class="text-secondary mb-4">Contact Info</h4>
-                    <a href=""><i class="fa fa-map-marker-alt me-2"></i> Kawempe Mbogo, Kampala, Uganda</a>
-                    <a href=""><i class="fas fa-envelope me-2"></i> info@autozone.org</a>
-                    <a href=""><i class="fas fa-phone me-2"></i> +256 456 7890</a>
-                    <div class="d-flex align-items-center mt-3">
-                        <i class="fas fa-share fa-2x text-secondary me-2"></i>
-                        <a class="btn mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn mx-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn mx-1" href=""><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
+<div class="container-fluid bg-dark text-white py-5 wow fadeIn" data-wow-delay="0.2s">
+  <div class="container py-5">
+    <div class="row g-4">
+
+      <!-- Contact Card -->
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-secondary bg-opacity-10 border-0 rounded-4 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="text-light mb-4">Contact Info</h5>
+            <p><i class="fa fa-map-marker-alt me-2 text-primary"></i> Kawempe Mbogo Rd, Opp Mbogo College</p>
+            <p><i class="fas fa-envelope me-2 text-primary"></i> info@autozone.org</p>
+            <p><i class="fas fa-phone me-2 text-primary"></i> +256 456 7890</p>
+            <div class="d-flex mt-3">
+              <a class="text-light me-3 fs-5" href="#"><i class="fab fa-facebook-f"></i></a>
+              <a class="text-light me-3 fs-5" href="#"><i class="fab fa-twitter"></i></a>
+              <a class="text-light fs-5" href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="col-md-6 col-lg-6 col-xl-3">
-                <div class="footer-item d-flex flex-column">
-                    <h4 class="text-secondary mb-4">Opening Hours</h4>
-                    <div class="mb-3">
-                        <h6 class="text-muted mb-0">Mon - Friday:</h6>
-                        <p class="text-white mb-0">09:00 am to 06:00 pm</p>
-                    </div>
-                    <div class="mb-3">
-                        <h6 class="text-muted mb-0">Saturday:</h6>
-                        <p class="text-white mb-0">09:00 am to 04:00 pm</p>
-                    </div>
-                    <div class="mb-3">
-                        <h6 class="text-muted mb-0">Sunday:</h6>
-                        <p class="text-white mb-0">Closed</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-3">
-                <div class="footer-item d-flex flex-column">
-                    <h4 class="text-secondary mb-4">Quick Links</h4>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Home</a>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> About Us</a>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Services</a>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Products</a>
-                    <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Contact</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-3">
-                <div class="footer-item">
-                    <h4 class="text-secondary mb-4">Newsletter</h4>
-                    <p class="text-white mb-3">Subscribe to our newsletter for updates and special offers.</p>
-                    <form method="post" action="{% url 'subscribe' %}">
-                        {% csrf_token %}
-                        <div class="position-relative mx-auto rounded-pill">
-                            <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="email" name="email" placeholder="Your email" required>
-                            <button type="submit" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Hours Card -->
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-secondary bg-opacity-10 border-0 rounded-4 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="text-light mb-4">Opening Hours</h5>
+            <p class="mb-2">Mon - Fri: <span class="text-white">09:00 am - 06:00 pm</span></p>
+            <p class="mb-2">Saturday: <span class="text-white">09:00 am - 04:00 pm</span></p>
+            <p class="mb-0">Sunday: <span class="text-white">Closed</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links Card -->
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-secondary bg-opacity-10 border-0 rounded-4 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="text-light mb-4">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>Home</a></li>
+              <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>About Us</a></li>
+              <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>Services</a></li>
+              <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>Products</a></li>
+              <li><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter Card -->
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-secondary bg-opacity-10 border-0 rounded-4 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="text-light mb-4">Newsletter</h5>
+            <p>Stay updated with our latest news and offers.</p>
+            <form method="post" action="{% url 'subscribe' %}">
+              {% csrf_token %}
+              <div class="position-relative">
+                <input type="email" name="email" class="form-control rounded-pill ps-4 pe-5 py-2" placeholder="Your email" required>
+                <button type="submit" class="btn btn-primary position-absolute top-0 end-0 mt-1 me-1 rounded-pill px-3 py-1">Go</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
-<div class="container-fluid copyright py-4">
-    <div class="container">
-        <div class="row g-4 align-items-center">
-            <div class="col-md-6 text-center text-md-start mb-md-0">
-                <span class="text-white"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>AUTOZONE PROFESSIONAL LIMITED</a>, All rights reserved.</span>
-            </div>
-            <div class="col-md-6 text-center text-md-end text-white">
-                <a href="#" class="text-white me-2">Privacy Policy</a>
-                <span class="text-white">|</span>
-                <a href="#" class="text-white mx-2">Terms of Service</a>
-            </div>
-        </div>
+<!-- Footer Bottom -->
+<div class="container-fluid bg-black text-white py-3">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <div class="text-center text-md-start mb-2 mb-md-0">
+      <small>&copy; AUTOZONE PROFESSIONAL LIMITED. All rights reserved.</small>
     </div>
+    <div class="text-center text-md-end">
+      <a href="#" class="text-white text-decoration-none me-3 hover-link">Privacy Policy</a>
+      <a href="#" class="text-white text-decoration-none hover-link">Terms of Service</a>
+    </div>
+  </div>
 </div>
+
+<!-- Optional: Add hover effect for links -->
+<style>
+  .hover-link:hover {
+    color: #0d6efd !important;
+    text-decoration: underline;
+    transition: all 0.3s ease-in-out;
+  }
+</style>
