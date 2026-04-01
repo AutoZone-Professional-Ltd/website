@@ -1,6 +1,8 @@
 import json
 import logging
+import os
 from collections import OrderedDict
+from django.templatetags.static import static
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -108,7 +110,7 @@ def _fetch_paginated_resource(doctype, fields, filters=None, order_by=None, page
 
 def _fetch_items():
     model_field = settings.ERPNEXT_ITEM_MODEL_FIELD or 'item_group'
-    requested_fields = ['item_code', 'item_name', 'description', 'brand', 'item_group', 'stock_uom', model_field]
+    requested_fields = ['item_code', 'item_name', 'description', 'brand', 'item_group', 'stock_uom', model_field, 'image']
     fields = list(OrderedDict.fromkeys(requested_fields))
     filters = [['disabled', '=', 0]]
 
@@ -117,7 +119,7 @@ def _fetch_items():
     except ERPNextCatalogError:
         if model_field == 'item_group':
             raise
-        fallback_fields = ['item_code', 'item_name', 'description', 'brand', 'item_group', 'stock_uom']
+        fallback_fields = ['item_code', 'item_name', 'description', 'brand', 'item_group', 'stock_uom', 'image']
         return _fetch_paginated_resource('Item', fields=fallback_fields, filters=filters, order_by='modified desc')
 
 
@@ -150,6 +152,35 @@ def _fetch_stock():
     return qty_by_code
 
 
+def resolve_erp_image(image_path):
+    """Normalize ERPNext image references to a safe displayable URL."""
+    if not image_path:
+        return ''
+
+    if image_path.startswith('http://') or image_path.startswith('https://'):
+        return image_path
+
+    image_path_clean = image_path
+    if image_path.startswith('files/'):
+        image_path_clean = '/' + image_path
+
+    if image_path_clean.startswith('/files/'):
+        filename = os.path.basename(image_path_clean)
+        local_path = os.path.join(settings.BASE_DIR, 'static', 'img', filename)
+        if os.path.exists(local_path):
+            return static(f'img/{filename}')
+
+        if settings.ERPNEXT_BASE_URL:
+            base_url = settings.ERPNEXT_BASE_URL.rstrip('/')
+            return f"{base_url}{image_path_clean}"
+
+        return ''
+
+    # keep relative/static if provided
+    return image_path
+
+
+
 def _group_items(items, prices_by_code, qty_by_code):
     model_field = settings.ERPNEXT_ITEM_MODEL_FIELD or 'item_group'
     grouped = OrderedDict()
@@ -164,6 +195,7 @@ def _group_items(items, prices_by_code, qty_by_code):
         raw_qty = qty_by_code.get(item_code)
         qty = int(raw_qty) if raw_qty is not None else None
 
+        image_url = resolve_erp_image(item.get('image', ''))
         model_group = grouped.setdefault(model, OrderedDict())
         brand_group = model_group.setdefault(brand, [])
         brand_group.append({
@@ -175,6 +207,7 @@ def _group_items(items, prices_by_code, qty_by_code):
             'price_list': price.get('price_list', ''),
             'stock_uom': item.get('stock_uom') or '',
             'qty': qty,
+            'image': image_url,
         })
 
     catalog = []

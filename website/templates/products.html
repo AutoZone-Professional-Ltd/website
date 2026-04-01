@@ -153,7 +153,13 @@
                      data-brand="{{ brand.name|slugify }}">
 
               <div class="pcat-card-top">
+                {% if item.image %}
+                <div class="pcat-card-image">
+                  <img src="{{ item.image }}" alt="{{ item.item_name }}" class="img-fluid">
+                </div>
+                {% else %}
                 <div class="pcat-card-icon"><i class="fas fa-cog"></i></div>
+                {% endif %}
                 {% if item.price %}
                 <div class="pcat-price">
                   <span class="pcat-price-cur">{{ item.currency }}</span>

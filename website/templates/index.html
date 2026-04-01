@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block content %}
+<div class="page-wrap">
 
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="container">
+    <div class="container-fluid px-4 px-md-5">
         <div class="hero-shell">
             <div class="row g-0 align-items-center">
                 <div class="col-lg-7">
@@ -78,7 +79,7 @@
 
 <!-- Stats Band -->
 <section class="stats-band">
-    <div class="container">
+    <div class="container-fluid px-4 px-md-5">
         <div class="stats-grid">
             <div class="stat-card">
                 <span class="stat-number">{{ stats.items|default:"1,200" }}</span>
@@ -106,7 +107,7 @@
 
 <!-- Top Brands -->
 <section class="content-section">
-    <div class="container">
+    <div class="container-fluid px-4 px-md-5">
         <div class="section-heading">
             <div class="section-eyebrow text-primary"><i class="fas fa-award me-2"></i>Our Partners</div>
             <h2>Brands We Distribute</h2>
@@ -116,7 +117,14 @@
             {% for brand in brands %}
             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                 <a href="{% url 'products' %}" class="brand-tile">
+                    {% if brand.image %}
+                    <div class="brand-image">
+                        <img src="{{ brand.image }}" alt="{{ brand.name }}" class="img-fluid" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="brand-icon" style="display: none;">{{ brand.name|slice:":2"|upper }}</div>
+                    </div>
+                    {% else %}
                     <div class="brand-icon">{{ brand.name|slice:":2"|upper }}</div>
+                    {% endif %}
                     <span class="brand-name">{{ brand.name }}</span>
                     <span class="brand-count">{{ brand.count }} items</span>
                 </a>
@@ -169,7 +177,7 @@
 
 <!-- Best Sellers -->
 <section class="content-section pt-0">
-    <div class="container">
+    <div class="container-fluid px-4 px-md-5">
         <div class="section-heading">
             <div class="section-eyebrow text-primary"><i class="fas fa-fire me-2"></i>Best Sellers</div>
             <h2>Top Selling Products</h2>
@@ -267,9 +275,118 @@
     </div>
 </section>
 
+<!-- Featured Products Carousel -->
+<section class="content-section pt-0">
+    <div class="container-fluid px-4 px-md-5">
+        <div class="section-heading">
+            <div class="section-eyebrow text-primary"><i class="fas fa-images me-2"></i>Featured Carousel</div>
+            <h2>Featured Products with Images</h2>
+            <p>Only items with valid images are shown in the slider.</p>
+        </div>
+
+        {% if featured_items %}
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                    <div class="carousel-inner">
+                        {% for item in featured_items %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <div class="row justify-content-center align-items-center gx-4">
+                                <div class="col-12 col-md-7">
+                                    <img
+                                        src="{{ item.image }}"
+                                        onerror="this.onerror=null;this.src='{% static 'img/Logo.png' %}';"
+                                        class="d-block w-100 carousel-img" alt="{{ item.item_name }}" />
+                                </div>
+                                <div class="col-12 col-md-5 text-center text-md-start">
+                                    <h3 class="mt-3 mt-md-0">{{ item.item_name }}</h3>
+                                    <p>{{ item.description|default:'Great quality spare part'|truncatechars:150 }}</p>
+                                    <p class="small text-muted mb-1">Brand: {{ item.brand|default:'N/A' }}</p>
+                                    <p class="small text-muted">Item code: {{ item.item_code|default:'N/A' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="side-hot-items">
+                    <h4 class="section-heading mt-0">Trending Now</h4>
+                    <p class="small text-muted">Quick links to popular matched products.</p>
+                    <div class="side-hot-list">
+                        {% for item in featured_items|slice:":6" %}
+                        <a href="{% url 'products' %}" class="side-hot-item">
+                            <img src="{{ item.image }}" alt="{{ item.item_name }}" onerror="this.src='{% static 'img/Logo.png' %}';" class="side-hot-thumb" />
+                            <div>
+                                <div class="side-hot-name">{{ item.item_name|truncatechars:24 }}</div>
+                                <div class="side-hot-meta">{{ item.brand|default:'Brand' }}</div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-secondary">No featured items with valid images are available right now.</div>
+        {% endif %}
+
+        <div class="section-heading mt-5">
+            <div class="section-eyebrow text-primary"><i class="fas fa-star me-2"></i>Featured Products</div>
+            <h2>Premium Parts with Images</h2>
+            <p>Explore our high-quality spare parts with detailed product images.</p>
+        </div>
+        <div class="product-grid">
+            {% for item in featured_items %}
+            <div class="product-card-wrapper">
+                <div class="product-card">
+                    {% if item.image %}
+                    <div class="product-image">
+                        <img src="{{ item.image }}" alt="{{ item.item_name }}" class="img-fluid">
+                    </div>
+                    {% else %}
+                    <div class="product-image product-image--placeholder">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    {% endif %}
+                    <div class="product-info">
+                        <h5 class="product-title">{{ item.item_name }}</h5>
+                        <p class="product-description">{{ item.description|truncatechars:100 }}</p>
+                        <div class="product-meta">
+                            <span class="product-brand">{{ item.brand }}</span>
+                            {% if item.price %}
+                            <span class="product-price">{{ item.currency }} {{ item.price|floatformat:0 }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p>No featured items available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'products' %}" class="btn btn-primary">
+                <i class="fas fa-th-large me-2"></i>View All Products
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- Services -->
 <section class="content-section pt-0">
-    <div class="container">
+    <div class="container-fluid px-4 px-md-5">
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="service-card">
@@ -315,9 +432,47 @@
     </div>
 </section>
 
-<!-- Regions -->
+<!-- Product Gallery -->
 <section class="content-section pt-0">
     <div class="container">
+        <div class="section-heading">
+            <div class="section-eyebrow text-primary"><i class="fas fa-camera me-2"></i>Product Gallery</div>
+            <h2>Explore Our Product Images</h2>
+            <p>High-quality images of our genuine spare parts collection.</p>
+        </div>
+        <div class="row g-3">
+            {% if local_gallery_images %}
+                {% for img in local_gallery_images %}
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="gallery-item">
+                        <img src="{{ img }}" alt="Featured product" class="img-fluid" onerror="this.src='{% static 'img/Logo.png' %}';">
+                        <div class="gallery-overlay">
+                            <h6>Featured Product</h6>
+                            <small>Local image highlight</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                {% for item in featured_items %}
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="gallery-item">
+                        <img src="{{ item.image }}" alt="{{ item.item_name }}" class="img-fluid" onerror="this.src='{% static 'img/Logo.png' %}';">
+                        <div class="gallery-overlay">
+                            <h6>{{ item.item_name|truncatechars:20 }}</h6>
+                            <small>{{ item.brand }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Regions -->
+<section class="content-section pt-0">
+    <div class="container-fluid px-4 px-md-5">
         <div class="section-heading">
             <div class="section-eyebrow text-primary"><i class="fas fa-map me-2"></i>Coverage</div>
             <h2>Serving All of Uganda</h2>
@@ -350,7 +505,7 @@
 
 <!-- CTA -->
 <section class="content-section pt-0 pb-5">
-    <div class="container">
+    <div class="container-fluid px-4 px-md-5">
         <div class="cta-banner">
             <div class="row align-items-center g-4">
                 <div class="col-lg-8">
@@ -446,6 +601,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    min-height: 160px;
+    padding: 1.75rem 1rem;
+}
+
+.content-section {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+.stats-band, .hero-section {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+}
+
+.hero-shell {
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 3.2vw, 3rem);
+}
+
+.section-heading h2 {
+    font-size: clamp(1.8rem, 2.4vw, 2.5rem);
+}
+
+.carousel-item .carousel-caption {
+    position: static;
+    margin-top: 1.25rem;
+    border-radius: 0.75rem;
+}
     text-align: center;
     padding: 1.5rem 1rem;
     background: #fff;
@@ -571,7 +759,98 @@
     color: #ff6b00;
 }
 
-.bestseller-stats .stat small {
+/* Global page enhancement */
+body {
+    background: #f1f4f8;
+    color: #0f172a;
+}
+
+.page-wrap {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+section {
+    padding: 2rem 0;
+}
+
+.section-heading {
+    max-width: 980px;
+    margin: 0 auto 1.5rem;
+}
+
+.section-heading h2 {
+    font-size: clamp(1.9rem, 2.8vw, 2.4rem);
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+}
+
+.section-heading p {
+    font-size: 1rem;
+    color: #64748b;
+}
+
+.hero-section {
+    min-height: 80vh;
+    display: grid;
+    align-items: center;
+    background: linear-gradient(130deg, rgba(2, 70, 150, .95), rgba(17, 40, 71, .95)), url('{% static 'img/DSC_1450.JPG' %}') center/cover no-repeat;
+    color: #fff;
+}
+
+.hero-shell {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 1rem;
+}
+
+.hero-subtext {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-bottom: 1.75rem;
+}
+
+.hero-actions .btn {
+    min-width: 220px;
+    font-weight: 700;
+}
+
+.stats-band {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.1);
+    margin-top: -80px;
+    padding: 1.1rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background: #f8fbff;
+    border-radius: 14px;
+    padding: 1.25rem;
+    text-align: center;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.stat-number {
+    color: #0f172a;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.stat-desc {
     color: #94a3b8;
     font-size: 0.6875rem;
 }
@@ -717,12 +996,196 @@
 }
 
 /* Hero text adjustments */
+.hero-section {
+    background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,43,59,0.95)), url('{% static 'img/DSC_1446.JPG' %}');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
 .hero-subtext {
     color: rgba(255,255,255,0.75);
     font-size: 1.0625rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
+
+/* Brand image */
+.brand-image {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+
+.brand-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Featured carousel */
+.carousel-img {
+    min-height: 300px;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: 18px;
+    background: #f8fafc;
+    border: 1px solid rgba(15,23,42,0.12);
+}
+.carousel-item .carousel-caption {
+    background: rgba(15,23,42,0.58);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+/* Product gallery */
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15,23,42,0.1);
+    transition: transform 0.3s;
+    min-height: 170px;
+}
+
+.gallery-item:hover {
+    transform: scale(1.04);
+}
+
+.side-hot-items {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid rgba(15,23,42,0.08);
+    padding: 1rem;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+}
+
+.side-hot-list {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.side-hot-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    border: 1px solid rgba(15,23,42,0.08);
+    border-radius: 10px;
+    padding: 0.45rem;
+    transition: all 0.2s;
+}
+
+.side-hot-item:hover {
+    background: rgba(255,107,0,0.09);
+    transform: translateY(-2px);
+}
+
+.side-hot-thumb {
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(15,23,42,0.15);
+}
+
+.side-hot-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.side-hot-meta {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+/* Featured products grid full row on web */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.product-card-wrapper {
+    display: flex;
+    min-height: 100%;
+}
+
+.product-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(15,23,42,0.075);
+    border: 1px solid rgba(15,23,42,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 34px rgba(15,23,42,0.14);
+}
+
+.product-image {
+    height: 200px;
+    overflow: hidden;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 1.1rem 1rem 1.2rem;
+    flex: 1;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.product-meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 </style>
+</div>
 
 {% endblock %}

@@ -1,4 +1,5 @@
 {% extends 'includes/base.html' %}
+{% load static %}
 
 {% block content %}
 <section class="page-hero">
@@ -34,6 +35,74 @@
                     <h4>Fleet supply continuity</h4>
                     <p class="muted-note mb-0">Position the company as a reliable partner that helps reduce vehicle downtime.</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partner Brands -->
+<section class="content-section pt-0">
+    <div class="container">
+        <div class="section-heading">
+            <div class="section-eyebrow text-primary"><i class="fas fa-handshake me-2"></i>Our Partners</div>
+            <h2>Trusted Brands We Carry</h2>
+            <p>We work with industry-leading manufacturers to bring you quality parts.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            {% for brand in brands %}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <a href="{% url 'products' %}" class="brand-tile">
+                    <div class="brand-icon">{{ brand.name|slice:":2"|upper }}</div>
+                    <span class="brand-name">{{ brand.name }}</span>
+                    <span class="brand-count">{{ brand.count }} items</span>
+                </a>
+            </div>
+            {% empty %}
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <a href="{% url 'products' %}" class="brand-tile">
+                    <div class="brand-icon">EN</div>
+                    <span class="brand-name">Endurance</span>
+                    <span class="brand-count">Leading brand</span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'products' %}" class="btn btn-primary">
+                <i class="fas fa-arrow-right me-2"></i>Browse All Products
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Service Stats -->
+<section class="content-section pt-0">
+    <div class="container">
+        <div class="section-heading">
+            <div class="section-eyebrow text-primary"><i class="fas fa-chart-bar me-2"></i>Service Excellence</div>
+            <h2>Our Commitment in Numbers</h2>
+            <p>Delivering quality service backed by real performance data.</p>
+        </div>
+        <div class="stats-band">
+            <div class="stat-card">
+                <span class="stat-number">{{ stats.items|default:"1,200" }}</span>
+                <div class="fw-bold">Parts Available</div>
+                <div class="muted-note">Ready for immediate dispatch</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">{{ stats.brands|default:"23" }}</span>
+                <div class="fw-bold">Brand Partners</div>
+                <div class="muted-note">Trusted manufacturers</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">{{ stats.customers|default:"2,898" }}</span>
+                <div class="fw-bold">Active Customers</div>
+                <div class="muted-note">Satisfied clients</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">24/7</span>
+                <div class="fw-bold">Support Available</div>
+                <div class="muted-note">Always here to help</div>
             </div>
         </div>
     </div>

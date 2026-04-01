@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from django.conf import settings
+from django.templatetags.static import static
+import os
 
-from .erpnext import get_catalog_data, _erp_get
+from .erpnext import get_catalog_data, _erp_get, resolve_erp_image
 from .erpnext_chat import AutoZoneChatbot
 from .models import Category, Product
 
@@ -41,14 +43,23 @@ def get_top_products(limit=12):
 
 
 def get_featured_items(limit=12):
-    """Get items with images from ERPNext."""
+    """Get items with images from ERPNext, resolved to local/static path when possible."""
     try:
         items = _erp_get('resource/Item', {
             'fields': '["item_code", "item_name", "description", "brand", "image", "item_group"]',
-            'filters': '[["image", "!=", ""], ["disabled", "=", 0]]',
+            'filters': '[ ["image", "!=", ""], ["disabled", "=", 0]]',
             'limit_page_length': limit,
         })
-        return items
+
+        resolved = []
+        for item in items:
+            img = resolve_erp_image(item.get('image', ''))
+            if not img:
+                img = static('img/Logo.png')
+            item['image'] = img
+            resolved.append(item)
+
+        return resolved[:limit]
     except Exception:
         return []
 
@@ -65,8 +76,12 @@ def get_all_brands():
         brand_data = {}
         for item in items:
             brand = item.get('brand') or 'Other'
+            image_val = resolve_erp_image(item.get('image', ''))
+            if not image_val:
+                image_val = static('img/Logo.png')
+
             if brand not in brand_data:
-                brand_data[brand] = {'count': 0, 'name': brand, 'image': item.get('image', '')}
+                brand_data[brand] = {'count': 0, 'name': brand, 'image': image_val}
             brand_data[brand]['count'] += 1
         
         return sorted(brand_data.values(), key=lambda x: -x['count'])
@@ -74,12 +89,29 @@ def get_all_brands():
         return []
 
 
+def get_local_gallery_images(limit=24):
+    """Read local static product images for extra gallery coverage."""
+    img_dir = os.path.join(settings.BASE_DIR, 'static', 'img')
+    if not os.path.isdir(img_dir):
+        return []
+
+    files = sorted(
+        [f for f in os.listdir(img_dir)
+         if os.path.isfile(os.path.join(img_dir, f))
+         and f.lower().split('.')[-1] in ['jpg', 'jpeg', 'png', 'webp']
+         and f.lower() != 'logo.png']
+    )
+    urls = [static(f'img/{f}') for f in files[:limit]]
+    return urls
+
+
 def home(request):
     """Home page with real data from database."""
     stats = get_erp_stats()
     top_products = get_top_products(12)
-    featured_items = get_featured_items(12)
+    featured_items = get_featured_items(20)
     brands = get_all_brands()[:15]
+    local_gallery_images = get_local_gallery_images(24)
     
     context = {
         'stats': stats,
@@ -87,6 +119,7 @@ def home(request):
         'featured_items': featured_items,
         'brands': brands,
         'featured_count': len(featured_items),
+        'local_gallery_images': local_gallery_images,
     }
     return render(request, 'index.html', context)
 

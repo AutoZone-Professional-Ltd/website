@@ -1,4 +1,5 @@
 {% extends 'includes/base.html' %}
+{% load static %}
 
 {% block content %}
 <section class="page-hero">
@@ -34,6 +35,39 @@
                     <h4>Email us</h4>
                     <p class="muted-note mb-0">crm@autozonepro.org for B2B requests, workshop inquiries, and procurement conversations.</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Stats -->
+<section class="content-section pt-0">
+    <div class="container">
+        <div class="section-heading">
+            <div class="section-eyebrow text-primary"><i class="fas fa-users me-2"></i>Why Choose Us</div>
+            <h2>Trusted by Thousands</h2>
+            <p>Join our growing community of satisfied customers.</p>
+        </div>
+        <div class="stats-band">
+            <div class="stat-card">
+                <span class="stat-number">{{ stats.customers|default:"2,898" }}</span>
+                <div class="fw-bold">Happy Customers</div>
+                <div class="muted-note">Across Uganda</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">{{ stats.items|default:"1,200+" }}</span>
+                <div class="fw-bold">Parts in Stock</div>
+                <div class="muted-note">Always available</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">{{ stats.brands|default:"23" }}</span>
+                <div class="fw-bold">Premium Brands</div>
+                <div class="muted-note">Quality guaranteed</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">Nationwide</span>
+                <div class="fw-bold">Delivery Coverage</div>
+                <div class="muted-note">Fast & reliable</div>
             </div>
         </div>
     </div>

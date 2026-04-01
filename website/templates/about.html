@@ -1,4 +1,5 @@
 {% extends 'includes/base.html' %}
+{% load static %}
 
 {% block content %}
 <section class="page-hero">
@@ -28,6 +29,87 @@
                     <p class="muted-note mb-0">That combination helps AutoZone Pro feel more premium than a generic spare parts shop and makes the site support your sales story instead of just listing pages.</p>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Company Stats -->
+<section class="content-section pt-0">
+    <div class="container">
+        <div class="section-heading">
+            <div class="section-eyebrow text-primary"><i class="fas fa-chart-line me-2"></i>Our Impact</div>
+            <h2>Numbers That Speak</h2>
+            <p>Real data from our operations and customer satisfaction.</p>
+        </div>
+        <div class="stats-band">
+            <div class="stat-card">
+                <span class="stat-number">{{ stats.items|default:"1,200+" }}</span>
+                <div class="fw-bold">Products in Stock</div>
+                <div class="muted-note">Genuine spare parts ready</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">{{ stats.brands|default:"23" }}</span>
+                <div class="fw-bold">Partner Brands</div>
+                <div class="muted-note">Industry leaders</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">{{ stats.customers|default:"2,898" }}</span>
+                <div class="fw-bold">Customers Served</div>
+                <div class="muted-note">Workshops & fleets</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">UGX 28.9B</span>
+                <div class="fw-bold">Total Sales</div>
+                <div class="muted-note">2020-2026 verified</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Top Products -->
+<section class="content-section pt-0">
+    <div class="container">
+        <div class="section-heading">
+            <div class="section-eyebrow text-primary"><i class="fas fa-trophy me-2"></i>Customer Favorites</div>
+            <h2>Most Popular Products</h2>
+            <p>Based on actual sales data from 2020-2026.</p>
+        </div>
+        <div class="bestsellers-grid">
+            {% for product in top_products %}
+            <div class="bestseller-card">
+                <div class="bestseller-rank">#{{ forloop.counter }}</div>
+                <div class="bestseller-content">
+                    <h5>{{ product.description|default:product.product }}</h5>
+                    <div class="bestseller-meta">
+                        <span class="meta-badge">{{ product.brand }}</span>
+                        {% if product.model %}
+                        <span class="meta-tag">{{ product.model }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="bestseller-stats">
+                    <div class="stat">
+                        <i class="fas fa-box"></i>
+                        <span>{{ product.total_qty|default:0|floatformat:0 }}</span>
+                        <small>sold</small>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="bestseller-card">
+                <div class="bestseller-rank">#1</div>
+                <div class="bestseller-content">
+                    <h5>Rear Shock Absorber</h5>
+                    <div class="bestseller-meta">
+                        <span class="meta-badge">Endurance</span>
+                        <span class="meta-tag">BM100KS</span>
+                    </div>
+                </div>
+                <div class="bestseller-stats">
+                    <div class="stat"><i class="fas fa-box"></i><span>110,515</span><small>sold</small></div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
