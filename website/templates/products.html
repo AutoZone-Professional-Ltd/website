@@ -117,83 +117,84 @@
           <div class="section-eyebrow text-primary">Category</div>
           <h2 class="pcat-model-title">{{ model.name }}</h2>
         </div>
-        <div class="pcat-model-pill" id="pill-{{ model.name|slugify }}">
+        <div class="pcat-model-pill">
           <i class="fas fa-box-open me-1"></i>
           <span class="pcat-model-visible">{{ model.count }}</span> parts
         </div>
       </div>
 
-      <!-- Brands -->
-      <div class="pcat-brands">
-        {% for brand in model.brands %}
-        {% if brand.name != 'Unbranded' %}
-        <div class="pcat-brand-block" data-brand="{{ brand.name|slugify }}">
+      <!-- Brand tab row -->
+      <div class="pcat-brand-tabs" role="tablist">
+        {% for brand in model.brands %}{% if brand.name != 'Unbranded' %}
+        <button class="pcat-btab{% if forloop.first %} active{% endif %}"
+                role="tab"
+                data-panel="bp-{{ model.name|slugify }}-{{ brand.name|slugify }}"
+                data-brand="{{ brand.name|slugify }}">
+          <span class="pcat-btab-init">{{ brand.name|slice:":2"|upper }}</span>
+          <span class="pcat-btab-name">{{ brand.name }}</span>
+          <span class="pcat-btab-count"
+                id="btab-n-{{ model.name|slugify }}-{{ brand.name|slugify }}">{{ brand.count }}</span>
+        </button>
+        {% endif %}{% endfor %}
+      </div>
 
-          <button class="pcat-brand-btn expanded"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#bc-{{ model.name|slugify }}-{{ brand.name|slugify }}"
-                  aria-expanded="true">
-            <div class="pcat-brand-left">
-              <span class="pcat-brand-initial">{{ brand.name|slice:":2"|upper }}</span>
-              <span class="pcat-brand-name">{{ brand.name }}</span>
-            </div>
-            <div class="pcat-brand-right">
-              <span class="pcat-brand-count"
-                    id="bc-badge-{{ model.name|slugify }}-{{ brand.name|slugify }}">
-                {{ brand.count }} SKUs
-              </span>
-              <i class="fas fa-chevron-down pcat-chevron"></i>
-            </div>
-          </button>
+      <!-- Brand panels (one per brand, only active shown) -->
+      <div class="pcat-brand-panels">
+        {% for brand in model.brands %}{% if brand.name != 'Unbranded' %}
+        <div class="pcat-brand-panel{% if forloop.first %} active{% endif %}"
+             id="bp-{{ model.name|slugify }}-{{ brand.name|slugify }}"
+             data-brand="{{ brand.name|slugify }}">
+          <div class="pcat-items-grid">
+            {% for item in brand.items %}
+            <article class="pcat-card"
+                     data-n="{{ item.item_name|lower }}"
+                     data-c="{{ item.item_code|lower }}"
+                     data-d="{{ item.description|lower|striptags }}"
+                     data-brand="{{ brand.name|slugify }}">
 
-          <div class="collapse show"
-               id="bc-{{ model.name|slugify }}-{{ brand.name|slugify }}">
-            <div class="pcat-items-grid">
-              {% for item in brand.items %}
-              <article class="pcat-card"
-                       data-n="{{ item.item_name|lower }}"
-                       data-c="{{ item.item_code|lower }}"
-                       data-d="{{ item.description|lower|striptags }}">
-                <div class="pcat-card-top">
-                  <div class="pcat-card-icon">
-                    <i class="fas fa-cog"></i>
-                  </div>
-                  {% if item.price %}
-                  <div class="pcat-price">
-                    <span class="pcat-price-cur">{{ item.currency }}</span>
-                    <span class="pcat-price-amt">{{ item.price|floatformat:"-2" }}</span>
-                  </div>
-                  {% else %}
-                  <div class="pcat-price pcat-price--req">On request</div>
-                  {% endif %}
+              <div class="pcat-card-top">
+                <div class="pcat-card-icon"><i class="fas fa-cog"></i></div>
+                {% if item.price %}
+                <div class="pcat-price">
+                  <span class="pcat-price-cur">{{ item.currency }}</span>
+                  <span class="pcat-price-amt">{{ item.price|floatformat:"-2" }}</span>
                 </div>
-
-                <h5 class="pcat-card-name">{{ item.item_name }}</h5>
-
-                <div class="pcat-card-code">
-                  <i class="fas fa-barcode me-1"></i>{{ item.item_code }}
-                </div>
-
-                {% if item.description %}
-                <p class="pcat-card-desc">{{ item.description|striptags|truncatechars:88 }}</p>
+                {% else %}
+                <div class="pcat-price pcat-price--req">On request</div>
                 {% endif %}
+              </div>
 
-                <div class="pcat-card-foot">
-                  {% if item.stock_uom %}
-                  <span class="pcat-tag"><i class="fas fa-ruler-combined"></i>{{ item.stock_uom }}</span>
+              <h5 class="pcat-card-name">{{ item.item_name }}</h5>
+
+              <div class="pcat-card-code">
+                <i class="fas fa-barcode me-1"></i>{{ item.item_code }}
+              </div>
+
+              {% if item.description %}
+              <p class="pcat-card-desc">{{ item.description|striptags|truncatechars:88 }}</p>
+              {% endif %}
+
+              <div class="pcat-card-foot">
+                {% if item.qty is not None %}
+                  {% if item.qty > 0 %}
+                  <span class="pcat-qty pcat-qty--in">
+                    <i class="fas fa-check-circle"></i>{{ item.qty }} in stock
+                  </span>
+                  {% else %}
+                  <span class="pcat-qty pcat-qty--out">
+                    <i class="fas fa-times-circle"></i>Out of stock
+                  </span>
                   {% endif %}
-                  {% if item.price_list %}
-                  <span class="pcat-tag"><i class="fas fa-list-alt"></i>{{ item.price_list }}</span>
-                  {% endif %}
-                </div>
-              </article>
-              {% endfor %}
-            </div>
+                {% endif %}
+                {% if item.stock_uom %}
+                <span class="pcat-tag"><i class="fas fa-ruler-combined"></i>{{ item.stock_uom }}</span>
+                {% endif %}
+              </div>
+            </article>
+            {% endfor %}
           </div>
-
         </div>
-        {% endif %}
-        {% endfor %}
+        {% endif %}{% endfor %}
       </div>
 
     </div>
@@ -235,23 +236,22 @@
 <!-- ===== CLIENT-SIDE SEARCH & FILTER ==================================== -->
 <script>
 (function () {
-  const input     = document.getElementById('pcatSearch');
-  const clearBtn  = document.getElementById('pcatClear');
-  const nrClear   = document.getElementById('pcatNoResultsClear');
-  const countEl   = document.getElementById('pcatCount');
-  const noRes     = document.getElementById('pcatNoResults');
-  const filterBar = document.getElementById('pcatFilterBar');
-  const chips     = document.querySelectorAll('.pcat-chip');
-  const hero      = document.querySelector('.pcat-hero');
-
-  let activeModel = 'all';
+  var input     = document.getElementById('pcatSearch');
+  var clearBtn  = document.getElementById('pcatClear');
+  var nrClear   = document.getElementById('pcatNoResultsClear');
+  var countEl   = document.getElementById('pcatCount');
+  var noRes     = document.getElementById('pcatNoResults');
+  var filterBar = document.getElementById('pcatFilterBar');
+  var chips     = document.querySelectorAll('.pcat-chip');
+  var hero      = document.querySelector('.pcat-hero');
+  var activeModel = 'all';
 
   /* --- sticky filter bar --- */
   window.addEventListener('scroll', function () {
     filterBar.classList.toggle('pcat-filter-bar--stuck', window.scrollY > hero.offsetHeight - 72);
   }, { passive: true });
 
-  /* --- model chip clicks --- */
+  /* --- model chip filter --- */
   chips.forEach(function (chip) {
     chip.addEventListener('click', function () {
       chips.forEach(function (c) { c.classList.remove('active'); });
@@ -261,21 +261,25 @@
     });
   });
 
-  /* --- search events --- */
+  /* --- brand tab switch --- */
+  document.querySelectorAll('.pcat-btab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var modelEl = tab.closest('.pcat-model');
+      modelEl.querySelectorAll('.pcat-btab').forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      var panelId = tab.dataset.panel;
+      modelEl.querySelectorAll('.pcat-brand-panel').forEach(function (p) { p.classList.remove('active'); });
+      var target = document.getElementById(panelId);
+      if (target) target.classList.add('active');
+    });
+  });
+
+  /* --- search --- */
   input.addEventListener('input', run);
   clearBtn.addEventListener('click', function () { input.value = ''; run(); input.focus(); });
   if (nrClear) nrClear.addEventListener('click', function () { input.value = ''; run(); });
 
-  /* --- chevron toggle state --- */
-  document.querySelectorAll('.pcat-brand-btn').forEach(function (btn) {
-    var targetId = btn.dataset.bsTarget;
-    var collapse = targetId ? document.querySelector(targetId) : null;
-    if (!collapse) return;
-    collapse.addEventListener('show.bs.collapse', function () { btn.classList.add('expanded'); });
-    collapse.addEventListener('hide.bs.collapse', function () { btn.classList.remove('expanded'); });
-  });
-
-  /* --- card visibility helper --- */
+  /* --- helpers --- */
   function cardMatches(card, q) {
     if (!q) return true;
     return (card.dataset.n && card.dataset.n.includes(q))
@@ -283,42 +287,44 @@
         || (card.dataset.d && card.dataset.d.includes(q));
   }
 
-  /* --- brand filter helper --- */
-  function filterBrand(brandEl, q) {
+  function filterPanel(panel, modelEl, q) {
     var brandVis = 0;
-    brandEl.querySelectorAll('.pcat-card').forEach(function (card) {
-      var visible = cardMatches(card, q);
-      card.style.display = visible ? '' : 'none';
-      if (visible) brandVis++;
+    panel.querySelectorAll('.pcat-card').forEach(function (card) {
+      var show = cardMatches(card, q);
+      card.style.display = show ? '' : 'none';
+      if (show) brandVis++;
     });
-    brandEl.style.display = brandVis ? '' : 'none';
-    var badge = brandEl.querySelector('.pcat-brand-count');
-    if (badge) badge.textContent = brandVis + ' SKU' + (brandVis === 1 ? '' : 's');
-    if (q && brandVis > 0) {
-      var colEl = brandEl.querySelector('.collapse');
-      if (colEl && !colEl.classList.contains('show')) colEl.classList.add('show');
+    panel.style.display = (q && !brandVis) ? 'none' : '';
+    var tab = modelEl.querySelector('.pcat-btab[data-brand="' + panel.dataset.brand + '"]');
+    if (tab) {
+      var badge = tab.querySelector('.pcat-btab-count');
+      if (badge) badge.textContent = brandVis;
     }
     return brandVis;
   }
 
-  /* --- main filter/search function --- */
+  function filterModel(modelEl, q) {
+    var panelsEl = modelEl.querySelector('.pcat-brand-panels');
+    if (panelsEl) panelsEl.classList.toggle('pcat-search-mode', !!q);
+    var modelVisible = 0;
+    modelEl.querySelectorAll('.pcat-brand-panel').forEach(function (panel) {
+      modelVisible += filterPanel(panel, modelEl, q);
+    });
+    var pill = modelEl.querySelector('.pcat-model-visible');
+    if (pill) pill.textContent = modelVisible;
+    return modelVisible;
+  }
+
   function run() {
     var q = input.value.trim().toLowerCase();
     clearBtn.style.display = q ? 'flex' : 'none';
     var total = 0;
 
     document.querySelectorAll('.pcat-model').forEach(function (modelEl) {
-      var slug = modelEl.dataset.model;
-      var modelHidden = activeModel !== 'all' && activeModel !== slug;
-      if (modelHidden) { modelEl.style.display = 'none'; return; }
+      var hidden = activeModel !== 'all' && activeModel !== modelEl.dataset.model;
+      if (hidden) { modelEl.style.display = 'none'; return; }
       modelEl.style.display = '';
-      var modelVisible = 0;
-      modelEl.querySelectorAll('.pcat-brand-block').forEach(function (brandEl) {
-        modelVisible += filterBrand(brandEl, q);
-      });
-      var pill = modelEl.querySelector('.pcat-model-visible');
-      if (pill) pill.textContent = modelVisible;
-      total += modelVisible;
+      total += filterModel(modelEl, q);
     });
 
     if (countEl) countEl.textContent = total;
