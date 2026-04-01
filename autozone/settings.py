@@ -12,19 +12,43 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+import importlib.util
+
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover
+    def load_dotenv(*args, **kwargs):
+        return False
+
+
+def load_simple_env(env_path):
+    if not Path(env_path).exists():
+        return
+
+    with open(env_path, encoding='utf-8') as env_file:
+        for raw_line in env_file:
+            line = raw_line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            key, value = line.split('=', 1)
+            os.environ[key.strip()] = value.strip()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+env_file = BASE_DIR / '.env'
+if not load_dotenv(env_file, override=True):
+    load_simple_env(env_file)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f3a5%s@=t4u293zj+ad-i*^342ce22b+=wq$vj6@o_b(l!92po'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-f3a5%s@=t4u293zj+ad-i*^342ce22b+=wq$vj6@o_b(l!92po')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'local').strip().lower()
+DEBUG = DJANGO_ENV != 'production'
 
 ALLOWED_HOSTS = ["*"]
 
@@ -74,12 +98,31 @@ WSGI_APPLICATION = 'autozone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+db_name = os.getenv('DB_NAME', '').strip()
+db_user = os.getenv('DB_USER', '').strip()
+db_password = os.getenv('DB_PASSWORD', '').strip()
+db_host = os.getenv('DB_HOST', '').strip()
+db_port = os.getenv('DB_PORT', '').strip()
+has_mysql_driver = importlib.util.find_spec('MySQLdb') is not None
+
+if all([db_name, db_user, db_password, db_host, db_port]) and has_mysql_driver:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': db_name,
+            'USER': db_user,
+            'PASSWORD': db_password,
+            'HOST': db_host,
+            'PORT': db_port,
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -115,5 +158,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# ERPNext catalog integration
+ERPNEXT_BASE_URL = os.getenv('ERPNEXT_BASE_URL', '').rstrip('/')
+ERPNEXT_AUTH_TOKEN = os.getenv('ERPNEXT_AUTH_TOKEN', '').strip()
+ERPNEXT_API_KEY = os.getenv('ERPNEXT_API_KEY', os.getenv('ERP_API_KEY', '')).strip()
+ERPNEXT_API_SECRET = os.getenv('ERPNEXT_API_SECRET', os.getenv('ERP_API_SECRET', '')).strip()
+ERPNEXT_ITEM_PRICE_LIST = os.getenv('ERPNEXT_ITEM_PRICE_LIST', '').strip()
+ERPNEXT_ITEM_MODEL_FIELD = os.getenv('ERPNEXT_ITEM_MODEL_FIELD', 'item_group').strip() or 'item_group'
+ERPNEXT_CATALOG_CACHE_TIMEOUT = int(os.getenv('ERPNEXT_CATALOG_CACHE_TIMEOUT', '300'))
+ERPNEXT_VERIFY_SSL = os.getenv('ERPNEXT_VERIFY_SSL', 'false').strip().lower() in ('1', 'true', 'yes')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

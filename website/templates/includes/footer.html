@@ -1,103 +1,48 @@
 {% load static %}
-<div class="container-fluid bg-dark text-white py-5 wow fadeIn" data-wow-delay="0.2s">
-  <div class="container py-5">
+<footer class="footer-shell">
+  <div class="container">
     <div class="row g-4">
-
-      <!-- Contact Card -->
-      <div class="col-md-6 col-xl-3">
-        <div class="card bg-secondary bg-opacity-10 border-0 rounded-4 shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="text-light mb-4">Contact Info</h5>
-            <p><i class="fa fa-map-marker-alt me-2 text-primary"></i> Kawempe Mbogo Rd, Opp Mbogo College</p>
-            <p><i class="fas fa-envelope me-2 text-primary"></i> info@autozone.org</p>
-            <p><i class="fas fa-phone me-2 text-primary"></i> +256 456 7890</p>
-            <div class="d-flex mt-3">
-              <a class="text-light me-3 fs-5" href="#"><i class="fab fa-facebook-f"></i></a>
-              <a class="text-light me-3 fs-5" href="#"><i class="fab fa-twitter"></i></a>
-              <a class="text-light fs-5" href="#"><i class="fab fa-instagram"></i></a>
+      <div class="col-lg-5">
+        <div class="footer-brand">
+          <div class="brand-lockup mb-3">
+            <div class="brand-badge">
+              <i class="fas fa-cogs"></i>
             </div>
+            <h2 class="brand-wordmark text-white mb-0">AUTOZONE PRO <span class="text-white-50">PROFESSIONAL LIMITED</span></h2>
+          </div>
+          <p>We help drivers, garages, fleets, and procurement teams get dependable auto spares faster, with expert support that reduces downtime and keeps vehicles moving.</p>
+          <div class="social-links mt-4">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
-
-      <!-- Hours Card -->
-      <div class="col-md-6 col-xl-3">
-        <div class="card bg-secondary bg-opacity-10 border-0 rounded-4 shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="text-light mb-4">Opening Hours</h5>
-            <p class="mb-2">Mon - Fri: <span class="text-white">09:00 am - 06:00 pm</span></p>
-            <p class="mb-2">Saturday: <span class="text-white">09:00 am - 04:00 pm</span></p>
-            <p class="mb-0">Sunday: <span class="text-white">Closed</span></p>
-          </div>
-        </div>
+      <div class="col-md-6 col-lg-2">
+        <h5 class="footer-title">Company</h5>
+        <a class="footer-link" href="{% url 'home' %}"><i class="fas fa-angle-right text-warning"></i>Home</a>
+        <a class="footer-link" href="{% url 'about' %}"><i class="fas fa-angle-right text-warning"></i>About</a>
+        <a class="footer-link" href="{% url 'services' %}"><i class="fas fa-angle-right text-warning"></i>Services</a>
+        <a class="footer-link" href="{% url 'products' %}"><i class="fas fa-angle-right text-warning"></i>Products</a>
       </div>
-
-      <!-- Quick Links Card -->
-      <div class="col-md-6 col-xl-3">
-        <div class="card bg-secondary bg-opacity-10 border-0 rounded-4 shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="text-light mb-4">Quick Links</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>Home</a></li>
-              <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>About Us</a></li>
-              <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>Services</a></li>
-              <li class="mb-2"><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>Products</a></li>
-              <li><a href="#" class="text-white text-decoration-none hover-link"><i class="fas fa-angle-right me-2 text-primary"></i>Contact</a></li>
-            </ul>
-          </div>
-        </div>
+      <div class="col-md-6 col-lg-2">
+        <h5 class="footer-title">Support</h5>
+        <a class="footer-link" href="{% url 'contact' %}"><i class="fas fa-angle-right text-warning"></i>Request a Quote</a>
+        <a class="footer-link" href="{% url 'contact' %}"><i class="fas fa-angle-right text-warning"></i>Parts Inquiry</a>
+        <a class="footer-link" href="{% url 'privacy_policy' %}"><i class="fas fa-angle-right text-warning"></i>Privacy Policy</a>
+        <a class="footer-link" href="{% url 'terms_of_service' %}"><i class="fas fa-angle-right text-warning"></i>Terms</a>
       </div>
-
-      <!-- Newsletter Card -->
-      <div class="col-md-6 col-xl-3">
-        <div class="card bg-secondary bg-opacity-10 border-0 rounded-4 shadow-sm h-100">
-          <div class="card-body">
-            <h5 class="text-light mb-4">Newsletter</h5>
-            <p>Stay updated with our latest news and offers.</p>
-            <form method="post" action="{% url 'subscribe' %}">
-              {% csrf_token %}
-              <div class="position-relative">
-                <input type="email" name="email" class="form-control rounded-pill ps-4 pe-5 py-2" placeholder="Your email" required>
-                <button type="submit" class="btn btn-primary position-absolute top-0 end-0 mt-1 me-1 rounded-pill px-3 py-1">Go</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- Footer Bottom with Gold Background -->
-<div class="container-fluid py-3" style="background: linear-gradient(90deg, #ff8800, #FFC300); color: #000;">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-      <div class="text-center text-md-start mb-2 mb-md-0">
-        <small class="fw-semibold">&copy; AUTOZONE PROFESSIONAL LIMITED. All rights reserved.</small>
-      </div>
-      <div class="text-center">
-        <a href="#" class="text-dark text-decoration-none me-3 hover-gold-link">Privacy Policy</a>
-        <a href="#" class="text-dark text-decoration-none hover-gold-link">Terms of Service</a>
+      <div class="col-md-6 col-lg-3">
+        <h5 class="footer-title">Contact</h5>
+        <p><i class="fas fa-map-marker-alt me-2 text-warning"></i>Kawempe Mbogo Road, opposite Mbogo College</p>
+        <p><i class="fas fa-envelope me-2 text-warning"></i>crm@autozonepro.org</p>
+        <p><i class="fas fa-phone me-2 text-warning"></i>+256 700 123 456</p>
+        <p><i class="fas fa-clock me-2 text-warning"></i>Mon - Sat, 8:00 AM - 6:00 PM</p>
       </div>
     </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+      <small>&copy; AutoZone Professional Limited. All rights reserved.</small>
+      <small>Built to earn trust before the first phone call.</small>
+    </div>
   </div>
-  
-  <!-- Optional: Hover effect -->
-  <style>
-    .hover-gold-link:hover {
-      text-decoration: underline;
-      color: #000 !important;
-      font-weight: bold;
-      transition: all 0.3s ease-in-out;
-    }
-  </style>
-  
-
-<!-- Optional: Add hover effect for links -->
-<style>
-  .hover-link:hover {
-    color: #0d6efd !important;
-    text-decoration: underline;
-    transition: all 0.3s ease-in-out;
-  }
-</style>
+</footer>

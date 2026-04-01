@@ -2,844 +2,227 @@
 {% load static %}
 
 {% block content %}
-    <div class="carousel-header">
-        <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <img src="{% static 'img/carousel-1.jpg' %}" class="img-fluid" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="text-center p-4" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase fw-bold mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.1s">AUTO PARTS & ACCESSORIES</h4>
-                            <h1 class="display-1 text-capitalize text-white mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.3s">Quality Automobile Solutions</h1>
-                            <p class="text-white mb-4 mb-md-5 fs-5 wow fadeInUp" data-wow-delay="0.5s">Your trusted source for professional automobile parts and services. We provide high-quality solutions for all your vehicle needs.</p>
-                            <a class="btn btn-primary border-secondary rounded-pill text-white py-3 px-5 wow fadeInUp" data-wow-delay="0.7s" href="#">Order Now</a>
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-shell">
+            <div class="row g-0 align-items-center">
+                <div class="col-lg-7">
+                    <div class="hero-copy">
+                        <div class="section-eyebrow text-warning">
+                            <i class="fas fa-bolt"></i>
+                            Auto spares that keep business moving
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="{% static 'img/carousel-2.jpg' %}" class="img-fluid" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="text-center p-4" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase fw-bold mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.1s">PROFESSIONAL SERVICES</h5>
-                            <h1 class="display-1 text-capitalize text-white mb-3 mb-md-4 wow fadeInUp" data-wow-delay="0.3s">Expert In Automobile Care</h1>
-                            <p class="text-white mb-4 mb-md-5 fs-5 wow fadeInUp" data-wow-delay="0.5s">
-                                Our team of certified professionals is ready to provide top-notch 
-                                service for your Motor Cycle maintenance and repair needs.</p>
-                            <a class="btn btn-primary border-secondary rounded-pill text-white py-3 px-5 wow fadeInUp" data-wow-delay="0.7s" href="#">Our Services</a>
+                        <h1 class="hero-title">Built for fast sourcing, genuine parts, and serious uptime.</h1>
+                        <p>AutoZone Pro positions itself as more than a spare parts shop. We help workshops, fleet operators, and everyday drivers get the right parts quickly, confidently, and with the kind of guidance that prevents expensive delays.</p>
+                        <div class="hero-actions">
+                            <a href="{% url 'products' %}" class="btn btn-primary">Explore Our Inventory</a>
+                            <a href="{% url 'contact' %}" class="btn btn-outline-dark">Talk to a Parts Specialist</a>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon bg-secondary wow fadeInLeft" data-wow-delay="0.2s" aria-hidden="false"></span>
-                <span class="visually-hidden-focusable">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
-                <span class="carousel-control-next-icon bg-secondary wow fadeInRight" data-wow-delay="0.2s" aria-hidden="false"></span>
-                <span class="visually-hidden-focusable">Next</span>
-            </button>
-        </div>
-    </div>
-    
-    <!-- Parts Category Grid Section -->
-<div class="container-fluid px-0 py-5 bg-light" id="toparts">
-    <div class="container py-3">
-        <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="sub-style">
-                <h5 class="sub-title text-primary px-3">Product Categories</h5>
-            </div>
-            <!--<h1 class="display-5 mb-4">Shop By Category</h1>-->
-            <!--<p class="mb-0">Find the right parts for your vehicle from our comprehensive range of quality products.</p>-->
-        </div>
-
-        <div class="row g-4 justify-content-center">
-            <!-- Battery Category -->
-            <div class="col-6 col-md-4 col-lg-2 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="card border-0 shadow-sm h-100 text-center p-3 transition-all">
-                        <div class="category-icon mx-auto mb-3">
-                            <img src="https://www.duralastparts.com/img/home/icons/batteries.png" class="img-fluid" alt="Batteries" style="height: 60px;">
-                        </div>
-                        <div class="category-content">
-                            <h6 class="text-dark mb-0">Batteries</h6>
-                        </div>
-                    </div> 
-            </div>
-
-            <!-- Brakes Category -->
-            <div class="col-6 col-md-4 col-lg-2 wow fadeInUp" data-wow-delay="0.2s"> 
-                    <div class="card border-0 shadow-sm h-100 text-center p-3 transition-all">
-                        <div class="category-icon mx-auto mb-3">
-                            <img src="https://www.duralastparts.com/img/home/icons/brakes.png" class="img-fluid" alt="Brakes" style="height: 60px;">
-                        </div>
-                        <div class="category-content">
-                            <h6 class="text-dark mb-0">Brakes</h6>
-                        </div>
-                    </div> 
-            </div>
-
-            <!-- Engine Management Category -->
-            <div class="col-6 col-md-4 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="card border-0 shadow-sm h-100 text-center p-3 transition-all">
-                        <div class="category-icon mx-auto mb-3">
-                            <img src="https://www.duralastparts.com/img/home/icons/engine-management.png" class="img-fluid" alt="Engine Management" style="height: 60px;">
-                        </div>
-                        <div class="category-content">
-                            <h6 class="text-dark mb-0">Engine Management</h6>
-                        </div>
-                    </div>
-            </div>
-
-            <!-- Starters & Alternators Category -->
-            <div class="col-6 col-md-4 col-lg-2 wow fadeInUp" data-wow-delay="0.4s"> 
-                    <div class="card border-0 shadow-sm h-100 text-center p-3 transition-all">
-                        <div class="category-icon mx-auto mb-3">
-                            <img src="https://www.duralastparts.com/img/home/icons/starters-alternators.png" class="img-fluid" alt="Starters & Alternators" style="height: 60px;">
-                        </div>
-                        <div class="category-content">
-                            <h6 class="text-dark mb-0">Starters & Alternators</h6>
-                        </div>
-                    </div> 
-            </div>
-
-            <!-- Suspension Components Category -->
-            <div class="col-6 col-md-4 col-lg-2 wow fadeInUp" data-wow-delay="0.5s"> 
-                    <div class="card border-0 shadow-sm h-100 text-center p-3 transition-all">
-                        <div class="category-icon mx-auto mb-3">
-                            <img src="https://www.duralastparts.com/img/home/icons/suspension-components.png" class="img-fluid" alt="Suspension Components" style="height: 60px;">
-                        </div>
-                        <div class="category-content">
-                            <h6 class="text-dark mb-0">Suspension Components</h6>
-                        </div>
-                    </div> 
-            </div>
-
-            <!-- More Parts Category -->
-            <div class="col-6 col-md-4 col-lg-2 wow fadeInUp" data-wow-delay="0.6s"> 
-                    <div class="card border-0 shadow-sm h-100 text-center p-3 transition-all">
-                        <div class="category-icon mx-auto mb-3">
-                            <img src="https://www.duralastparts.com/img/home/icons/more-parts.png" class="img-fluid" alt="More Parts" style="height: 60px;">
-                        </div>
-                        <div class="category-content">
-                            <h6 class="text-dark mb-0">More Parts</h6>
-                        </div>
-                    </div> 
-            </div>
-        </div>
-    </div>
-</div>
-<style>
-    /* Category Cards */
-    .category-card .card {
-        transition: all 0.3s ease;
-        border-radius: 10px;
-    }
-    
-    .category-card:hover .card {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        background: #f8f9fa;
-    }
-    
-    .category-icon {
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .category-content h6 {
-        transition: color 0.3s ease;
-    }
-    
-    .category-card:hover .category-content h6 {
-        color: var(--bs-primary) !important;
-    }
-    
-    .transition-all {
-        transition: all 0.3s ease;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 767.98px) {
-        .category-icon img {
-            height: 50px;
-        }
-        
-        .category-content h6 {
-            font-size: 14px;
-        }
-    }
-</style>
-
-    <div class="container-fluid py-3 py-md-4 py-lg-5">
-        <div class="container py-5">
-            <div class="row g-5 align-items-stretch">
-                <!-- Left Image Column -->
-                <div class="col-xl-5 wow fadeInLeft" data-wow-delay="0.1s">
-                    <div class="bg-light rounded h-100">
-                        <img src="{% static 'img/spares.png' %}" class="img-fluid w-100 h-100 object-fit-cover" alt="Image" style="object-fit: cover;">
-                    </div>
-                </div>
-    
-                <!-- Right Text Content Column -->
-                <div class="col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
-                    <div class="h-100 d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="sub-title pe-3">About our company</h5>
-                            <h1 class="display-5 mb-4">Trusted Automobile Solutions Provider</h1>
-                            <p class="mb-4">
-                                AUTOZONE PROFESSIONAL LIMITED has been serving customers with high-quality Automobile
-                                parts and professional services for over 20 years. Our commitment to excellence and
-                                customer satisfaction sets us apart in the industry.
-                            </p>
-                            <div class="row gy-4">
-                                <div class="col-sm-6 d-flex align-items-center">
-                                    <i class="fas fa-tools fa-3x text-secondary"></i>
-                                    <h5 class="ms-4 mb-0">Quality Parts</h5>
-                                </div>
-                                <div class="col-sm-6 d-flex align-items-center">
-                                    <i class="fas fa-user-tie fa-3x text-secondary"></i>
-                                    <h5 class="ms-4 mb-0">How We Work With You</h5>
-                                </div>
+                        <div class="hero-trust">
+                            <div class="trust-pill">
+                                <strong>Same-day response</strong>
+                                Parts requests handled with urgency.
+                            </div>
+                            <div class="trust-pill">
+                                <strong>Workshop friendly</strong>
+                                Reliable support for garages and mechanics.
+                            </div>
+                            <div class="trust-pill">
+                                <strong>Fleet focused</strong>
+                                Supply continuity for growing businesses.
                             </div>
                         </div>
-    
-                        <!-- Bottom two sub-columns -->
-                        <div class="row mt-4">
-                            <!-- Left sub-column -->
-                            <div class="col-md-6">
-                                <div class="mb-4">
-                                    <p class="text-primary h6 mb-2"><i class="fa fa-check-circle text-secondary me-2"></i> 100% Genuine Parts</p>
-                                    <p class="text-primary h6 mb-2"><i class="fa fa-check-circle text-secondary me-2"></i> Fast & Reliable Service</p>
-                                    <p class="text-primary h6 mb-3"><i class="fa fa-check-circle text-secondary me-2"></i> Expert Advice</p>
-                                </div>
-                                <div class="d-flex flex-wrap align-items-center">
-                                    <div id="phone-tada" class="me-4">
-                                        <a href="#" class="position-relative wow tada" data-wow-delay=".9s">
-                                            <i class="fa fa-phone-alt text-primary fa-3x"></i>
-                                            <div class="position-absolute" style="top: 0; left: 25px;">
-                                                <i class="fa fa-comment-dots text-secondary"></i>
-                                            </div>
-                                        </a>
-                                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="hero-panel">
+                        <div class="signal-card">
+                            <span class="badge-soft"><i class="fas fa-shield-alt"></i> Why customers trust us</span>
+                            <h3 class="mt-3 mb-3">A sharper, more premium parts experience.</h3>
+                            <p class="muted-note mb-0">We combine product knowledge, availability, and clean customer service so the brand feels dependable from the first visit.</p>
+                            <ul class="signal-list">
+                                <li>
+                                    <i class="fas fa-check-circle text-primary mt-1"></i>
                                     <div>
-                                        <span class="text-primary">Need assistance?</span><br>
-                                        <span class="text-secondary fs-5" style="letter-spacing: 1px;">Call: <i>+256 755 829 642</i></span>
-                                        <br>
-                                        <span class="text-secondary fs-5" style="letter-spacing: 1px;">Mail:<i> sales@autozonepro.org</i></span>
+                                        <strong>Clear category discovery</strong>
+                                        <div class="muted-note">Visitors can quickly understand what you stock and who you serve.</div>
                                     </div>
-                                </div>
-                            </div>
-    
-                            <!-- Right sub-column -->
-                            <div class="col-md-6">
-                                <div class="bg-light rounded p-4 h-100 shadow-sm">
-                                    <!--<h5 class="text-primary mb-4 fw-bold"><i class="fas fa-handshake me-2"></i/h5>-->
-                                    <ul class="list-unstyled text-muted">
-                                        <li class="mb-3 d-flex align-items-start">
-                                            <i class="fas fa-lightbulb me-3 text-primary fa-lg"></i>
-                                            <span class="fw-semibold text-dark">Help in <span class="text-secondary">Making Estimate</span></span>
-                                        </li>
-                                        <li class="mb-3 d-flex align-items-start">
-                                            <i class="fas fa-pen-fancy me-3 text-primary fa-lg"></i>
-                                            <span class="fw-semibold text-dark">Editing <span class="text-secondary">Your Estimate</span></span>
-                                        </li>
-                                        <li class="mb-3 d-flex align-items-start">
-                                            <i class="fas fa-check-circle me-3 text-primary fa-lg"></i>
-                                            <span class="fw-semibold text-dark">Verifying <span class="text-secondary">Your Estimate</span></span>
-                                        </li>
-                                        <li class="mb-3 d-flex align-items-start">
-                                            <i class="fas fa-file-invoice-dollar me-3 text-primary fa-lg"></i>
-                                            <span class="fw-semibold text-dark">Billing <span class="text-secondary">Your Estimate</span></span>
-                                        </li>
-                                        <li class="mb-3 d-flex align-items-start">
-                                            <i class="fas fa-truck-moving me-3 text-primary fa-lg"></i>
-                                            <span class="fw-semibold text-dark">Delivery <span class="text-secondary">to Your Doorstep</span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-    
-                    </div> <!-- End h-100 container -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Premium Spares Section -->
-    <div class="container-fluid bg-light py-5">
-        <div class="container">
-            <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h5 class="sub-title text-primary px-3">Premium Brands</h5>
-                </div>
-                <h1 class="display-5 mb-4">New and genuine world leading brands</h1>
-                <p class="mb-0 mx-auto" style="max-width: 700px;">We supply the highest quality auto parts from trusted manufacturers that meet our rigorous standards for performance and durability.</p>
-            </div>
-            
-            <div class="row g-4 justify-content-center">
-                <!-- Premium Brand Cards -->
-                <div class="col-md-6 col-lg-4 wow zoomIn" data-wow-delay="0.1s">
-                    <div class="card border-0 shadow-lg h-100 premium-brand-card">
-                       
-                        <div class="card-body text-center p-4">
-                            <div class="brand-logo mb-4">
-                                <img src="{% static 'img/brands/rvee-2.jpeg' %}" class="img-fluid" alt="Reve" >
-                            </div>
-                            <h5 class="card-title text-primary fw-bold mb-3">Reve</h5>
-                            <div class="premium-features mb-4">
-                                <div class="feature-item">
-                                    <i class="fas fa-check-circle text-success me-2"></i>
-                                    <span>OE Quality Standards</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-shield-alt text-warning me-2"></i>
-                                    <span>Extended Warranty</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-truck text-info me-2"></i>
-                                    <span>Fast Delivery</span>
-                                </div>
-                            </div>
-                            <ul class="list-unstyled text-muted small mb-4">
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Brake Pads</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Oil Filters</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Clutch Plates</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Engine Gaskets</li>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle text-primary mt-1"></i>
+                                    <div>
+                                        <strong>Trust-building presentation</strong>
+                                        <div class="muted-note">Stronger visual hierarchy and premium styling raise confidence instantly.</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle text-primary mt-1"></i>
+                                    <div>
+                                        <strong>Sales-oriented messaging</strong>
+                                        <div class="muted-note">The copy now emphasizes speed, authenticity, and reduced downtime.</div>
+                                    </div>
+                                </li>
                             </ul>
-                            <a href="#" class="btn btn-primary rounded-pill px-4 py-2 mt-2">
-                                <i class="fas fa-eye me-2"></i> View Products
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 wow zoomIn" data-wow-delay="0.2s">
-                    <div class="card border-0 shadow-lg h-100 premium-brand-card">
-                       
-                        <div class="card-body text-center p-4">
-                            <div class="brand-logo mb-4">
-                                <img src="{% static 'img/brands/Endurance.png' %}" class="img-fluid" alt="Endurance" >
-                            </div>
-                            <h5 class="card-title text-primary fw-bold mb-3">Endurance</h5>
-                            <div class="premium-features mb-4">
-                                <div class="feature-item">
-                                    <i class="fas fa-check-circle text-success me-2"></i>
-                                    <span>Rigorous Testing</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-shield-alt text-warning me-2"></i>
-                                    <span>2-Year Warranty</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-truck text-info me-2"></i>
-                                    <span>Nationwide Stock</span>
-                                </div>
-                            </div>
-                            <ul class="list-unstyled text-muted small mb-4">
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Shock Absorbers</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Fork Assemblies</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Drum Brakes</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Rear View Mirrors</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary rounded-pill px-4 py-2 mt-2">
-                                <i class="fas fa-eye me-2"></i> View Products
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="card border-0 shadow-lg h-100 premium-brand-card">
-                       
-                        <div class="card-body text-center p-4">
-                            <div class="brand-logo mb-4">
-                                <img src="{% static 'img/brands/gabriel.png' %}" class="img-fluid" alt="Gabriel" >
-                            </div>
-                            <h5 class="card-title text-primary fw-bold mb-3">Gabriel</h5>
-                            <div class="premium-features mb-4">
-                                <div class="feature-item">
-                                    <i class="fas fa-check-circle text-success me-2"></i>
-                                    <span>OE Equivalent</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-shield-alt text-warning me-2"></i>
-                                    <span>3-Year Warranty</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-truck text-info me-2"></i>
-                                    <span>Same Day Dispatch</span>
-                                </div>
-                            </div>
-                            <ul class="list-unstyled text-muted small mb-4">
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Suspension Kits</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Gas Springs</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Steering Dampers</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Ride Control Systems</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary rounded-pill px-4 py-2 mt-2">
-                                <i class="fas fa-eye me-2"></i> View Products
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                
-                <div class="col-md-6 col-lg-4 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="card border-0 shadow-lg h-100 premium-brand-card">
-                       
-                        <div class="card-body text-center p-4">
-                            <div class="brand-logo mb-4">
-                                <img src="{% static 'img/brands/nbc.png' %}" class="img-fluid" alt="Gabriel" >
-                            </div>
-                            <h5 class="card-title text-primary fw-bold mb-3">NBC</h5>
-                            <div class="premium-features mb-4">
-                                <div class="feature-item">
-                                    <i class="fas fa-check-circle text-success me-2"></i>
-                                    <span>OE Equivalent</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-shield-alt text-warning me-2"></i>
-                                    <span>3-Year Warranty</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-truck text-info me-2"></i>
-                                    <span>Same Day Dispatch</span>
-                                </div>
-                            </div>
-                            <ul class="list-unstyled text-muted small mb-4">
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Ball Bearings</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Needle Rollers</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Clutch Bearings</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Hub Bearings</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary rounded-pill px-4 py-2 mt-2">
-                                <i class="fas fa-eye me-2"></i> View Products
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="card border-0 shadow-lg h-100 premium-brand-card">
-                       
-                        <div class="card-body text-center p-4">
-                            <div class="brand-logo mb-4">
-                                <img src="{% static 'img/brands/varroc.jpg' %}" class="img-fluid" alt="Gabriel" >
-                            </div>
-                            <h5 class="card-title text-primary fw-bold mb-3">Varroc</h5>
-                            <div class="premium-features mb-4">
-                                <div class="feature-item">
-                                    <i class="fas fa-check-circle text-success me-2"></i>
-                                    <span>OE Equivalent</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-shield-alt text-warning me-2"></i>
-                                    <span>3-Year Warranty</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-truck text-info me-2"></i>
-                                    <span>Same Day Dispatch</span>
-                                </div>
-                            </div>
-                            <ul class="list-unstyled text-muted small mb-4">
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Headlights</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i>Tail Lamps</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i>Turn Indicators</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i>Handle Switches</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary rounded-pill px-4 py-2 mt-2">
-                                <i class="fas fa-eye me-2"></i> View Products
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="card border-0 shadow-lg h-100 premium-brand-card">
-                       
-                        <div class="card-body text-center p-4">
-                            <div class="brand-logo mb-4">
-                                <img src="{% static 'img/brands/lumax.png' %}" class="img-fluid" alt="Gabriel" >
-                            </div>
-                            <h5 class="card-title text-primary fw-bold mb-3">Lumax</h5>
-                            <div class="premium-features mb-4">
-                                <div class="feature-item">
-                                    <i class="fas fa-check-circle text-success me-2"></i>
-                                    <span>OE Equivalent</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-shield-alt text-warning me-2"></i>
-                                    <span>3-Year Warranty</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-truck text-info me-2"></i>
-                                    <span>Same Day Dispatch</span>
-                                </div>
-                            </div>
-                            <ul class="list-unstyled text-muted small mb-4">
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i>Lighting Systems</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Indicators</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Rear Lamps</li>
-                                <li class="py-1"><i class="fas fa-cog me-2 text-primary"></i> Number Plate Lights</li>
-                            </ul>
-                            <a href="#" class="btn btn-primary rounded-pill px-4 py-2 mt-2">
-                                <i class="fas fa-eye me-2"></i> View Products
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            
-                
-                
-            
-            <div class="text-center mt-5 wow fadeInUp" data-wow-delay="0.2s">
-                <a href="#" class="btn btn-outline-primary btn-lg rounded-pill px-5 py-3">
-                    <i class="fas fa-star me-2"></i> View All Premium Brands
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container-fluid counter-facts py-5">
-        <div class="container py-5">
-            <div class="row g-4">
-                <div class="col-12 col-sm-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="counter">
-                        <div class="counter-icon">
-                            <i class="fas fa-boxes"></i>
-                        </div>
-                        <div class="counter-content">
-                            <h3>Products</h3>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <span class="counter-value" data-toggle="counter-up">5000</span>
-                                <h4 class="text-secondary mb-0" style="font-weight: 600; font-size: 25px;">+</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="counter">
-                        <div class="counter-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="counter-content">
-                            <h3>Customers</h3>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <span class="counter-value" data-toggle="counter-up">1000</span>
-                                <h4 class="text-secondary mb-0" style="font-weight: 600; font-size: 25px;">+</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="counter">
-                        <div class="counter-icon">
-                            <i class="fas fa-store"></i>
-                        </div>
-                        <div class="counter-content">
-                            <h3>Locations</h3>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <span class="counter-value" data-toggle="counter-up">25</span>
-                                <h4 class="text-secondary mb-0" style="font-weight: 600; font-size: 25px;">+</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="counter">
-                        <div class="counter-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <div class="counter-content">
-                            <h3>Years</h3>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <span class="counter-value" data-toggle="counter-up">20</span>
-                                <h4 class="text-secondary mb-0" style="font-weight: 600; font-size: 25px;">+</h4>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <div class="container-fluid service overflow-hidden pt-5">
-        <div class="container py-5">
-            <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h5 class="sub-title text-primary px-3">Our Services</h5>
-                </div>
-                <h1 class="display-5 mb-4">Professional Auto Parts</h1>
-                <p class="mb-0">We offer comprehensive motor bike spare parts 
-                     to keep your vehicle running smoothly and efficiently.</p>
+<section class="stats-band">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">{{ product_count|default:"0" }}</span>
+                <div class="fw-bold">Products listed</div>
+                <div class="muted-note">A growing catalog that helps buyers see depth and availability.</div>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item">
-                        <div class="service-inner">
-                            <div class="service-img">
-                                <img src="{% static 'img/service-1.jpg' %}" class="img-fluid w-100 rounded" alt="Image">
-                            </div>
-                            <div class="service-title">
-                                <div class="service-title-name">
-                                    <div class="bg-primary text-center rounded p-3 mx-5 mb-4">
-                                        <a href="#" class="h4 text-white mb-0">Parts Supply</a>
-                                    </div>
-                                    <a class="btn bg-light text-secondary rounded-pill py-3 px-5 mb-4" href="#">Explore More</a>
-                                </div>
-                                <div class="service-content pb-4">
-                                    <a href="#"><h4 class="text-white mb-4 py-3">Parts Supply</h4></a>
-                                    <div class="px-4">
-                                        <p class="mb-4">We provide genuine reve Products
-                                             and aftermarket parts for all major motor bikes
-                                              makes and models.</p>
-                                        <a class="btn btn-primary border-secondary rounded-pill py-3 px-5" href="#">Explore More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item">
-                        <div class="service-inner">
-                            <div class="service-img">
-                                <img src="{% static 'img/service-2.jpg' %}" class="img-fluid w-100 rounded" alt="Image">
-                            </div>
-                            <div class="service-title">
-                                <div class="service-title-name">
-                                    <div class="bg-primary text-center rounded p-3 mx-5 mb-4">
-                                        <a href="#" class="h4 text-white mb-0">Brand New Spares</a>
-                                    </div>
-                                    <a class="btn bg-light text-secondary rounded-pill py-3 px-5 mb-4" href="#">Explore More</a>
-                                </div>
-                                <div class="service-content pb-4">
-                                    <a href="#"><h4 class="text-white mb-4 py-3">Endurance Repair</h4></a>
-                                    <div class="px-4">
-                                        <p class="mb-4">Our certified sales team provide expert spare parts services for all motorcycles.</p>
-                                        <a class="btn btn-primary border-secondary rounded-pill text-white py-3 px-5" href="#">Explore More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item">
-                        <div class="service-inner">
-                            <div class="service-img">
-                                <img src="{% static 'img/service-1.jpg' %}" class="img-fluid w-100 rounded" alt="Image">
-                            </div>
-                            <div class="service-title">
-                                <div class="service-title-name">
-                                    <div class="bg-primary text-center rounded p-3 mx-5 mb-4">
-                                        <a href="#" class="h4 text-white mb-0">Endurance</a>
-                                    </div>
-                                    <a class="btn bg-light text-secondary rounded-pill py-3 px-5 mb-4" href="#">Explore More</a>
-                                </div>
-                                <div class="service-content pb-4">
-                                    <a href="#"><h4 class="text-white mb-4 py-3">Supply and Distribution</h4></a>
-                                    <div class="px-4">
-                                        <p class="mb-4">We deliver the spares at your door steps within the very short period of time</p>
-                                        <a class="btn btn-primary border-secondary rounded-pill text-white py-3 px-5" href="#">Explore More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
+            <div class="stat-card">
+                <span class="stat-number">{{ category_count|default:"0" }}</span>
+                <div class="fw-bold">Core categories</div>
+                <div class="muted-note">Organized for quicker sourcing across common spare-part needs.</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">20+</span>
+                <div class="fw-bold">Years positioning</div>
+                <div class="muted-note">Messaging emphasizes experience, consistency, and long-term reliability.</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">B2B</span>
+                <div class="fw-bold">Fleet and workshop ready</div>
+                <div class="muted-note">Prepared to serve both individual drivers and business accounts.</div>
             </div>
         </div>
     </div>
+</section>
 
-    <div class="container-fluid features overflow-hidden py-5">
-        <div class="container">
-            <div class="section-title text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h5 class="sub-title text-primary px-3">Why Choose Us</h5>
+<section class="content-section">
+    <div class="container">
+        <div class="section-heading">
+            <div class="section-eyebrow text-primary">Key Categories</div>
+            <h2>Make the catalog feel broad, useful, and ready for urgent demand.</h2>
+            <p>The strongest auto spares websites communicate coverage instantly. These featured categories help customers know they can rely on AutoZone Pro for routine replacements and mission-critical parts.</p>
+        </div>
+        <div class="row g-4">
+            {% for category in categories %}
+            <div class="col-md-6 col-xl-4">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-car-battery"></i>
+                    </div>
+                    <h4 class="mb-2">{{ category.name }}</h4>
+                    <p class="muted-note mb-0">{{ category.description|default:"Essential spares sourced to keep repairs moving and downtime low." }}</p>
                 </div>
-                <h1 class="display-5 mb-4">Quality Service You Can Trust</h1>
-                <p class="mb-0">
-                    We are committed to providing 
-                    exceptional products with a focus
-                     on quality and customer satisfaction.
-                </p>
             </div>
-            <div class="row g-4 justify-content-center text-center">
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="feature-item text-center p-4">
-                        <div class="feature-icon p-3 mb-4">
-                            <i class="fas fa-check-circle fa-4x text-primary"></i>
-                        </div>
-                        <div class="feature-content d-flex flex-column">
-                            <h5 class="mb-3">Quality Parts</h5>
-                            <p class="mb-3">
-                                We supply only genuine and high-quality auto parts.</p>
-                            <a class="btn btn-secondary rounded-pill" href="#">Read More<i class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
+            {% empty %}
+            <div class="col-md-6 col-xl-4">
+                <div class="category-card">
+                    <div class="category-icon"><i class="fas fa-car-battery"></i></div>
+                    <h4 class="mb-2">Batteries & Electrical</h4>
+                    <p class="muted-note mb-0">High-demand power and charging components for everyday vehicles and fleets.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="category-card">
+                    <div class="category-icon"><i class="fas fa-stop-circle"></i></div>
+                    <h4 class="mb-2">Brakes & Safety</h4>
+                    <p class="muted-note mb-0">Pads, discs, fluids, and related components that customers replace with urgency.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="category-card">
+                    <div class="category-icon"><i class="fas fa-cogs"></i></div>
+                    <h4 class="mb-2">Engine & Drive Systems</h4>
+                    <p class="muted-note mb-0">Core replacement parts for reliability, performance, and workshop turnaround.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="content-section pt-0">
+    <div class="container">
+        <div class="section-heading">
+            <div class="section-eyebrow text-primary">Featured Inventory</div>
+            <h2>Showcase the parts that prove quality, range, and professionalism.</h2>
+            <p>Featured products help visitors trust that your stock is real and current. They also create a stronger bridge between homepage branding and actual buying intent.</p>
+        </div>
+        <div class="row g-4">
+            {% for product in featured_products %}
+            <div class="col-md-6 col-xl-4">
+                <div class="product-card">
+                    <div class="product-category-pill mb-3">
+                        <i class="fas fa-tools"></i>
+                        {{ product.category.name }}
+                    </div>
+                    <h4>{{ product.name }}</h4>
+                    <p class="muted-note">{{ product.description|truncatechars:130 }}</p>
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-4">
+                        <span class="product-price">${{ product.price }}</span>
+                        <span class="stock-pill">
+                            <i class="fas fa-box-open text-primary"></i>
+                            {{ product.stock }} in stock
+                        </span>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="feature-item text-center p-4">
-                        <div class="feature-icon p-3 mb-4">
-                            <i class="fas fa-user-tie fa-4x text-primary"></i>
-                        </div>
-                        <div class="feature-content d-flex flex-column">
-                            <h5 class="mb-3">Expert Technicians</h5>
-                            <p class="mb-3">Our team consists of certified and experienced professionals.</p>
-                            <a class="btn btn-secondary rounded-pill" href="#">Read More<i class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="content-card">
+                    <h4 class="mb-2">Featured products will appear here as soon as they are marked in the admin.</h4>
+                    <p class="muted-note mb-0">The new layout is ready for them, and the admin now makes featured items easier to manage.</p>
                 </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="feature-item text-center p-4">
-                        <div class="feature-icon p-3 mb-4">
-                            <i class="fas fa-clock fa-4x text-primary"></i>
-                        </div>
-                        <div class="feature-content d-flex flex-column">
-                            <h5 class="mb-3">Quick Service</h5>
-                            <p class="mb-3">We value your time and provide efficient, timely service.</p>
-                            <a class="btn btn-secondary rounded-pill" href="#">Read More<i class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="content-section pt-0">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-search"></i></div>
+                    <h4>Accurate parts matching</h4>
+                    <p class="muted-note mb-0">Strong customer service starts with helping people find the correct part the first time.</p>
                 </div>
-                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="feature-item text-center p-4">
-                        <div class="feature-icon p-3 mb-4">
-                            <i class="fas fa-dollar-sign fa-4x text-primary"></i>
-                        </div>
-                        <div class="feature-content d-flex flex-column">
-                            <h5 class="mb-3">Fair Pricing</h5>
-                            <p class="mb-3">Competitive prices without compromising on quality.</p>
-                            <a class="btn btn-secondary rounded-pill" href="#">Read More<i class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-truck-loading"></i></div>
+                    <h4>Fast sourcing for urgent jobs</h4>
+                    <p class="muted-note mb-0">The new positioning frames AutoZone Pro as a responsive supply partner, not just a store.</p>
                 </div>
-                <div class="col-12">
-                    <a class="btn btn-primary border-secondary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.1s" href="#">More Features</a>
+            </div>
+            <div class="col-lg-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-users-cog"></i></div>
+                    <h4>Support for workshops and fleets</h4>
+                    <p class="muted-note mb-0">That B2B-friendly message helps you stand out from basic retail-focused competitors.</p>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
+<section class="content-section pt-0 pb-5">
+    <div class="container">
+        <div class="cta-banner">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <div class="section-eyebrow text-dark">Next Step</div>
+                    <h2 class="mb-3">Turn visitors into buyers with a clear quote request path.</h2>
+                    <p class="mb-0 text-dark">A strong auto parts brand feels ready to respond. This call-to-action keeps the site focused on inquiries, stock checks, and faster conversions.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="{% url 'contact' %}" class="btn btn-outline-dark bg-white">Request Pricing Today</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-<script>
-    new WOW().init();
-</script>
-
-<style>
-    /* Premium Brand Cards */
-    .premium-brand-card {
-        transition: all 0.3s ease;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .premium-brand-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    .premium-badge {
-        position: absolute;
-        top: 15px;
-        right: -30px;
-        background: #ffc107;
-        color: #000;
-        padding: 5px 30px;
-        transform: rotate(45deg);
-        font-weight: bold;
-        font-size: 12px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    
-    .brand-logo {
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .premium-features {
-        background: #f8f9fa;
-        border-radius: 8px;
-        padding: 10px;
-    }
-    
-    .feature-item {
-        margin-bottom: 8px;
-        font-size: 14px;
-    }
-    
-    /* Benefits Section */
-    .benefit-item {
-        background: #f8f9fa;
-        padding: 15px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-    
-    .benefit-item:hover {
-        background: #e9ecef;
-        transform: translateX(5px);
-    }
-    
-    .benefit-icon {
-        width: 50px;
-        height: 50px;
-        background: rgba(13, 110, 253, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    /* Testimonials */
-    .testimonial-card {
-        background: white;
-        transition: all 0.3s ease;
-    }
-    
-    .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    
-    .rating {
-        color: #ffc107;
-    }
-    
-    /* Stats Box */
-    .stats-box {
-        position: absolute;
-        bottom: -30px;
-        right: 30px;
-        width: 80%;
-        z-index: 1;
-    }
-    
-    @media (max-width: 767.98px) {
-        .stats-box {
-            position: relative;
-            right: auto;
-            bottom: auto;
-            width: 100%;
-            margin-top: 20px;
-        }
-    }
-</style>
