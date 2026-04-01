@@ -50,8 +50,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-f3a5%s@=t4u293zj+ad
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'local').strip().lower()
 DEBUG = DJANGO_ENV != 'production'
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = ['autozonepro.org', 'www.autozonepro.org', '185.27.135.97', 'localhost', '127.0.0.1']
 
 # Application definition
 
