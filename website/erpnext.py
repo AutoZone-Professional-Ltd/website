@@ -136,7 +136,21 @@ def _fetch_prices():
     return prices_by_code
 
 
-def _group_items(items, prices_by_code):
+def _fetch_stock():
+    """Return {item_code: total_actual_qty} summed across all warehouses."""
+    try:
+        rows = _fetch_paginated_resource('Bin', fields=['item_code', 'actual_qty'])
+    except ERPNextCatalogError:
+        return {}
+    qty_by_code = {}
+    for row in rows:
+        code = row.get('item_code')
+        if code:
+            qty_by_code[code] = qty_by_code.get(code, 0) + (row.get('actual_qty') or 0)
+    return qty_by_code
+
+
+def _group_items(items, prices_by_code, qty_by_code):
     model_field = settings.ERPNEXT_ITEM_MODEL_FIELD or 'item_group'
     grouped = OrderedDict()
 
@@ -147,6 +161,8 @@ def _group_items(items, prices_by_code):
         model = item.get(model_field) or item.get('item_group') or 'General'
         description = item.get('description') or 'Description coming soon.'
         price = prices_by_code.get(item_code, {})
+        raw_qty = qty_by_code.get(item_code)
+        qty = int(raw_qty) if raw_qty is not None else None
 
         model_group = grouped.setdefault(model, OrderedDict())
         brand_group = model_group.setdefault(brand, [])
@@ -158,6 +174,7 @@ def _group_items(items, prices_by_code):
             'currency': price.get('currency', ''),
             'price_list': price.get('price_list', ''),
             'stock_uom': item.get('stock_uom') or '',
+            'qty': qty,
         })
 
     catalog = []
@@ -165,15 +182,16 @@ def _group_items(items, prices_by_code):
         brand_entries = []
         model_item_count = 0
         for brand_name, brand_items in brands.items():
-            model_item_count += len(brand_items)
-            brand_entries.append({'name': brand_name, 'items': brand_items, 'count': len(brand_items)})
+            sorted_items = sorted(brand_items, key=lambda x: x['price'] or 0, reverse=True)
+            model_item_count += len(sorted_items)
+            brand_entries.append({'name': brand_name, 'items': sorted_items, 'count': len(sorted_items)})
         catalog.append({'name': model_name, 'brands': brand_entries, 'count': model_item_count})
 
     return catalog
 
 
 def get_catalog_data(force_refresh=False):
-    cache_key = 'erpnext_catalog_v1'
+    cache_key = 'erpnext_catalog_v2'
     if not force_refresh:
         cached = cache.get(cache_key)
         if cached is not None:
@@ -181,7 +199,8 @@ def get_catalog_data(force_refresh=False):
 
     items = _fetch_items()
     prices_by_code = _fetch_prices()
-    catalog = _group_items(items, prices_by_code)
+    qty_by_code = _fetch_stock()
+    catalog = _group_items(items, prices_by_code, qty_by_code)
     payload = {
         'catalog_groups': catalog,
         'total_items': sum(group['count'] for group in catalog),
